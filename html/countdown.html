@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>倒计时</title>
+</head>
+<body>
+<div class="time"></div>
+<script>
+    var deadlineTime=new Date("2022/10/1 22:10:12");
+    function countDown(deadline) {
+        var nowTime=Date.now();
+        var time_distance=deadlineTime-nowTime;
+        var int_day=Math.floor(time_distance/86400000);
+        time_distance=time_distance%86400000;
+        var int_hour=Math.floor(time_distance/3600000);
+        time_distance=time_distance%3600000;
+        var int_minute=Math.floor(time_distance/60000);
+        time_distance=time_distance%60000;
+        var int_second=Math.floor(time_distance/1000);
+        var str="剩余时间："+int_day+"天"+zero(int_hour)+"时"+zero(int_minute)+"分"+zero(int_second)+"秒";
+        document.querySelector(".time").innerHTML=str;
+    }
+    function zero(n) {
+        return n<10?"0"+n:n;
+    }
+    countDown(deadlineTime);
+    setInterval(function () {
+        countDown(deadlineTime)
+    },1000);
+</script>
+</body>
+</html>
